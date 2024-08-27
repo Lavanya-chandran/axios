@@ -1,31 +1,19 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Home from "./Components/Home";
-import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
-import Users from "./Components/Users";
-import AddUserForm from "./Components/AddUserForm";
-import EditUserForm from "./Components/EditUserForm";
-import SingleUserProfile from "./Components/SingleUserProfile";
+import React from 'react'
+import AppRoutes from './utils/AppRoutes'
+import { createBrowserRouter,RouterProvider } from 'react-router-dom'
+import "@pallassystems/react-bootstrap-table"
+import "@vlsergey/react-bootstrap-button-with-spinner"
+import "./App.css"
+import "bootstrap/dist/css/bootstrap.min.css"
+
+export const API_URL =  'https://jsonplaceholder.typicode.com/users';
 
 function App() {
-  return (
-    <>
-      {/* Navigating one element to another element using react-router-dom */}
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/addUser" element={<AddUserForm />} />
-          <Route path="/editUser/:id" element={<EditUserForm />} />
-          <Route path="/userProfile/:id" element={<SingleUserProfile />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </>
-  );
+
+  const router = createBrowserRouter(AppRoutes)
+  return <>
+    <RouterProvider router={router}/>
+  </>
 }
 
-export default App;
+export default App
